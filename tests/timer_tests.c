@@ -1,32 +1,7 @@
 #include "unity.h"
 #include "heap_base.h"
+#include "timer.h"
 #include <string.h>
-
-typedef struct
-{
-    uint32_t tick;
-}
-timer_t;
-
-void Timer_Init( timer_t * const t )
-{
-    t->tick = 0U;
-}
-
-void Timer_Set( timer_t * const t, uint32_t tick)
-{
-    t->tick = tick;
-}
-
-void Timer_Tick( timer_t * const t )
-{
-    t->tick++;
-}
-
-uint32_t Timer_Get( const timer_t * const t)
-{
-    return t->tick;
-}
 
 static void test_Timer_Funcs(void)
 {
@@ -38,14 +13,27 @@ static void test_Timer_Funcs(void)
     Timer_Tick(&timer);
     TEST_ASSERT_EQUAL( 1U, Timer_Get(&timer) );
     
-    Timer_Set(&timer, UINT32_MAX);
-    TEST_ASSERT_EQUAL( UINT32_MAX, Timer_Get(&timer) );
+    Timer_Set(&timer, UINT16_MAX);
+    TEST_ASSERT_EQUAL( UINT16_MAX, Timer_Get(&timer) );
     
     Timer_Tick(&timer);
     TEST_ASSERT_EQUAL( 0U, Timer_Get(&timer) );
 }
 
+
+static void test_Timer_EnQEvent(void)
+{
+    timer_t timer;
+    heap_t heap;
+    
+    Timer_Init(&timer);
+    Heap_Init(&heap);
+    
+    TEST_ASSERT_EQUAL( 0U, heap.fill );
+}
+
 extern void TimerTestSuite(void)
 {
     RUN_TEST(test_Timer_Funcs);
+    RUN_TEST(test_Timer_EnQEvent);
 }

@@ -1,9 +1,18 @@
+#ifndef HEAP_BASE_H
+#define HEAP_BASE_H
+
 #include <assert.h>
 #include <stdbool.h>
 #include <stddef.h>
 #include <stdint.h>
 
 #define HEAP_LEN (8U)
+
+typedef struct
+{
+    uint32_t key;
+}
+heap_data_t;
 
 typedef struct 
 {
@@ -19,4 +28,6 @@ extern uint32_t Heap_Pop(heap_t * heap);
 extern uint32_t Heap_Peek(heap_t * heap);
 extern bool Heap_IsEmpty(heap_t * heap);
 extern bool Heap_IsFull(heap_t * heap);
+
+#endif /* HEAP_BASE_H */
 

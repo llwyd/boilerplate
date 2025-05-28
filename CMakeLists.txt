@@ -19,6 +19,8 @@ add_executable( tests.out
                 src/fifo_base.c
                 src/state.c
                 src/state.h
+                src/timer.h
+                src/timer.c
                 src/state_history.c
                 src/state_history.h
                 src/emitter_base.h
