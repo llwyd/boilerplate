@@ -36,6 +36,8 @@ add_executable( tests.out
                 tests/emitter_tests.c
                 tests/event_observer_tests.h
                 tests/event_observer_tests.c
+                tests/timer_tests.h
+                tests/timer_tests.c
                 Unity/src/unity.c
                 Unity/src/unity.h
                 Unity/src/unity_internals.h ) 

@@ -3,6 +3,7 @@
 #include "heap_tests.h"
 #include "emitter_tests.h"
 #include "event_observer_tests.h"
+#include "timer_tests.h"
 #include "unity.h"
 
 int main( void )
@@ -14,5 +15,6 @@ int main( void )
     HeapTestSuite();
     EMITTERTestSuite();
     EVENTOBSERVERTestSuite();
+    TimerTestSuite();
     return UNITY_END();
 }
