@@ -26,7 +26,7 @@ typedef struct
 }
 timer_pq_t;
 
-void Timer_Init( timer_t * const t );
+void Timer_Init( timer_t * const t, timer_pq_t * const q );
 void Timer_Set( timer_t * const t, uint16_t tick);
 void Timer_Tick( timer_t * const t );
 uint16_t Timer_Get( const timer_t * const t);

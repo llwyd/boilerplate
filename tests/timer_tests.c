@@ -3,11 +3,16 @@
 #include "timer.h"
 #include <string.h>
 
+#define EVENTS(EVNT) \
+    EVNT(TestEvent0) \
+    EVNT(TestEvent1) \
+    EVNT(TestEvent2) \
+
 static void test_Timer_Funcs(void)
 {
     timer_t timer;
     
-    Timer_Init(&timer);
+    Timer_Init(&timer, NULL);
     TEST_ASSERT_EQUAL( 0U, Timer_Get(&timer) );
 
     Timer_Tick(&timer);
@@ -24,12 +29,12 @@ static void test_Timer_Funcs(void)
 static void test_Timer_EnQEvent(void)
 {
     timer_t timer;
-    heap_t heap;
+    timer_pq_t q;
     
-    Timer_Init(&timer);
-    Heap_Init(&heap);
+    Timer_Init(&timer, &q);
     
-    TEST_ASSERT_EQUAL( 0U, heap.fill );
+    TEST_ASSERT_EQUAL( 0U, q.fill );
+    TEST_ASSERT_EQUAL( TIMER_HEAP_LEN, q.max );
 }
 
 extern void TimerTestSuite(void)
