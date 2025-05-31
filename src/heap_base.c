@@ -1,13 +1,12 @@
 #include "heap_base.h"
-#include <string.h>
 #include <stdio.h>
 
-static void swap( uint32_t * a, uint32_t * b )
+static void swap( heap_data_t * a, heap_data_t * b )
 {
     assert(a != NULL);
     assert(b != NULL);
 
-    uint32_t temp = *a;
+    heap_data_t temp = *a;
     *a = *b;
     *b = temp;
 }
@@ -16,7 +15,12 @@ extern void Heap_Init(heap_t * heap)
 {
     heap->fill = 0;
     heap->max = HEAP_LEN;
-    memset(heap->heap, 0xFF, sizeof(uint32_t) * HEAP_LEN);
+    uint8_t * heap8 = (uint8_t *)&heap->heap;
+    uint32_t size = sizeof(heap_data_t) * HEAP_LEN;
+    for(uint32_t idx = 0; idx < size; idx++)
+    {
+        *(heap8++) = 0xFF; 
+    }
 }
 
 extern bool Heap_IsFull(heap_t * heap)
@@ -31,7 +35,7 @@ extern bool Heap_IsEmpty(heap_t * heap)
     return (heap->fill == 0U);
 }
 
-extern void Heap_Push(heap_t * heap, uint32_t data)
+extern void Heap_Push(heap_t * heap, heap_data_t data)
 {
     (void)heap;
     (void)data;
@@ -48,7 +52,7 @@ extern void Heap_Push(heap_t * heap, uint32_t data)
     while( idx > 0U )
     {
         uint32_t parent = (idx - 1) >> 1U;
-        if( heap->heap[idx] < heap->heap[parent] )
+        if( heap->heap[idx].key < heap->heap[parent].key )
         {
             swap(&heap->heap[idx], &heap->heap[parent]);
         }
@@ -63,7 +67,7 @@ extern uint32_t Heap_Peek(heap_t * heap)
     assert(!Heap_IsEmpty(heap));
     assert(heap->fill > 0U);
     
-    return heap->heap[0U];
+    return heap->heap[0U].key;
 }
 
 extern uint32_t Heap_Pop(heap_t * heap)
@@ -72,11 +76,11 @@ extern uint32_t Heap_Pop(heap_t * heap)
     assert(!Heap_IsEmpty(heap));
     assert(heap->fill > 0U);
 
-    uint32_t top = heap->heap[0];
+    uint32_t top = heap->heap[0].key;
 
     /* Place bottom of heap at top */
     heap->heap[0] = heap->heap[heap->fill - 1U];
-    heap->heap[heap->fill - 1U] = UINT32_MAX;
+    heap->heap[heap->fill - 1U].key = UINT32_MAX;
     heap->fill--;
 
     /* Sink through the heap */
@@ -85,12 +89,12 @@ extern uint32_t Heap_Pop(heap_t * heap)
 
     while(jdx < heap->fill)
     {
-        if(heap->heap[jdx] > heap->heap[jdx+1])
+        if(heap->heap[jdx].key > heap->heap[jdx+1].key)
         {
             jdx++;
         }
 
-        if(heap->heap[idx] > heap->heap[jdx])
+        if(heap->heap[idx].key > heap->heap[jdx].key)
         {
             swap(&heap->heap[idx], &heap->heap[jdx]);
             idx = jdx;
