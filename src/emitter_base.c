@@ -19,10 +19,13 @@ extern void Emitter_Init(emitter_base_t * const base, fifo_base_t * fifo)
     base->fifo = fifo;
 }
 
+
+
 static bool Emit(emitter_base_t * const base, event_t event)
 {
     (void)base;
     (void)event;
+    assert(false);
     return false;
 }
 

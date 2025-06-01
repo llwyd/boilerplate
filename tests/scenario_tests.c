@@ -1,4 +1,5 @@
 #include "emitter_tests.h"
+#include "scenario_tests.h"
 #include "emitter_base.h"
 #include "state.h"
 #include "fifo_base.h"

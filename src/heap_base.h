@@ -1,3 +1,6 @@
+#ifndef HEAP_H_
+#define HEAP_H_
+
 #include <assert.h>
 #include <stdbool.h>
 #include <stddef.h>
@@ -28,4 +31,6 @@ extern heap_data_t Heap_PopFull(heap_t * heap);
 extern uint32_t Heap_Peek(heap_t * heap);
 extern bool Heap_IsEmpty(heap_t * heap);
 extern bool Heap_IsFull(heap_t * heap);
+
+#endif /* HEAP_H_ */
 
