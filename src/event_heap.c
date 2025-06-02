@@ -1,4 +1,4 @@
-#include "heap_base.h"
+#include "event_heap.h"
 #include <stdio.h>
 
 static void swap( heap_data_t * a, heap_data_t * b )
@@ -77,6 +77,45 @@ extern uint32_t Heap_Pop(heap_t * heap)
     assert(heap->fill > 0U);
 
     uint32_t top = heap->heap[0].key;
+
+    /* Place bottom of heap at top */
+    heap->heap[0] = heap->heap[heap->fill - 1U];
+    heap->heap[heap->fill - 1U].key = UINT32_MAX;
+    heap->fill--;
+
+    /* Sink through the heap */
+    uint32_t idx = 0U;
+    uint32_t jdx = (idx << 1U) + 1U;
+
+    while(jdx < heap->fill)
+    {
+        if(heap->heap[jdx].key > heap->heap[jdx+1].key)
+        {
+            jdx++;
+        }
+
+        if(heap->heap[idx].key > heap->heap[jdx].key)
+        {
+            swap(&heap->heap[idx], &heap->heap[jdx]);
+            idx = jdx;
+            jdx = (idx << 1U) + 1U;
+        }
+        else
+        {
+            break;
+        }
+    }
+
+    return top;
+}
+
+extern heap_data_t Heap_PopFull(heap_t * heap)
+{
+    assert(heap != NULL);
+    assert(!Heap_IsEmpty(heap));
+    assert(heap->fill > 0U);
+
+    heap_data_t top = heap->heap[0];
 
     /* Place bottom of heap at top */
     heap->heap[0] = heap->heap[heap->fill - 1U];

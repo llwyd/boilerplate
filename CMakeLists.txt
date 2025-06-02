@@ -13,8 +13,8 @@ include_directories( tests.out PRIVATE src )
 
 add_executable( tests.out
                 src/assert_bp.h
-                src/heap_base.h
-                src/heap_base.c
+                src/event_heap.h
+                src/event_heap.c
                 src/fifo_base.h
                 src/fifo_base.c
                 src/state.c
@@ -34,6 +34,8 @@ add_executable( tests.out
                 tests/tests.c
                 tests/emitter_tests.h
                 tests/emitter_tests.c
+                tests/scenario_tests.c
+                tests/scenario_tests.h
                 tests/event_observer_tests.h
                 tests/event_observer_tests.c
                 Unity/src/unity.c

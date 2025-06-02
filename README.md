@@ -12,8 +12,8 @@ Personalised boilerplate code so that I don't have to rewrite it for every proje
     - Module for allowing state machines to subscribe to events and get notified when they are emitted.
 - `fifo_base.c`
     -  FIFO 'base class' with functionality for enqueuing, dequeuing, peeking etc for any particular type.
-- `heap_base.c`
-    -  Support for min-heaps
+- `event_heap.c`
+    -  min-heap priority queue for events
 - `state.c`
     - This is my personalised take on the UML state machine design pattern popularised by Miro Samek's writings about state machines (which are fantastic).
 

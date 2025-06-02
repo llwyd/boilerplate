@@ -7,6 +7,7 @@
 #include <stdint.h>
 #include "state.h"
 #include "fifo_base.h"
+#include "event_heap.h"
 
 typedef struct emitter_vfunc_t emitter_vfunc_t;
 typedef struct
@@ -24,6 +25,8 @@ struct emitter_vfunc_t
 };
 
 extern void Emitter_Init(emitter_base_t * const base, fifo_base_t * const fifo);
+
+extern void Emitter_InitHeap(heap_t * heap);
 
 inline static bool Emitter_Emit( emitter_base_t * const base, event_t event )
 {
