@@ -1,4 +1,4 @@
-#include "heap_base.h"
+#include "event_heap.h"
 #include <stdio.h>
 
 static void swap( heap_data_t * a, heap_data_t * b )

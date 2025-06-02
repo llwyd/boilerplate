@@ -7,7 +7,7 @@
 #include <stdint.h>
 #include "state.h"
 #include "fifo_base.h"
-#include "heap_base.h"
+#include "event_heap.h"
 
 typedef struct emitter_vfunc_t emitter_vfunc_t;
 typedef struct

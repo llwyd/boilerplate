@@ -13,8 +13,8 @@ include_directories( tests.out PRIVATE src )
 
 add_executable( tests.out
                 src/assert_bp.h
-                src/heap_base.h
-                src/heap_base.c
+                src/event_heap.h
+                src/event_heap.c
                 src/fifo_base.h
                 src/fifo_base.c
                 src/state.c

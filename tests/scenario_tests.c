@@ -3,7 +3,7 @@
 #include "emitter_base.h"
 #include "state.h"
 #include "fifo_base.h"
-#include "heap_base.h"
+#include "event_heap.h"
 #include "unity.h"
 #include <string.h>
 
