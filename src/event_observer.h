@@ -2,7 +2,7 @@
 #define EVENT_OBS_H_
 
 #include "state.h"
-#include <assert.h>
+#include "assert_bp.h"
 #include <stdio.h>
 
 #define MAX_SUBSCRIPTIONS (4U)

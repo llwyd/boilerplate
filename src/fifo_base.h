@@ -1,7 +1,7 @@
 #ifndef FIFO_BASE_
 #define FIFO_BASE_
 
-#include <assert.h>
+#include "assert_bp.h"
 #include <stdbool.h>
 #include <stddef.h>
 #include <stdint.h>
@@ -66,35 +66,35 @@ struct fifo_vfunc_t
 
 inline static void FIFO_EnQ( fifo_base_t * const fifo )
 {
-    assert( fifo != NULL );
-    assert( fifo->vfunc != NULL );
-    assert( fifo->fill < fifo->max );
+    ASSERT( fifo != NULL );
+    ASSERT( fifo->vfunc != NULL );
+    ASSERT( fifo->fill < fifo->max );
     
     (fifo->vfunc->enq)(fifo);
 }
 
 inline static void FIFO_DeQ( fifo_base_t * const fifo )
 {
-    assert( fifo != NULL );
-    assert( fifo->vfunc != NULL );
-    assert( fifo->fill > 0U );
+    ASSERT( fifo != NULL );
+    ASSERT( fifo->vfunc != NULL );
+    ASSERT( fifo->fill > 0U );
 
     (fifo->vfunc->deq)(fifo);
 }
 
 inline static void FIFO_Flush( fifo_base_t * const fifo )
 {
-    assert( fifo != NULL );
-    assert( fifo->vfunc != NULL );
+    ASSERT( fifo != NULL );
+    ASSERT( fifo->vfunc != NULL );
 
     (fifo->vfunc->flush)(fifo);
 }
 
 inline static void FIFO_Pk( fifo_base_t * const fifo )
 {
-    assert( fifo != NULL );
-    assert( fifo->vfunc != NULL );
-    assert( fifo->fill > 0U );
+    ASSERT( fifo != NULL );
+    ASSERT( fifo->vfunc != NULL );
+    ASSERT( fifo->fill > 0U );
 
     (fifo->vfunc->peek)(fifo);
 }

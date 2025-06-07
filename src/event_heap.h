@@ -1,7 +1,7 @@
 #ifndef HEAP_H_
 #define HEAP_H_
 
-#include <assert.h>
+#include "assert_bp.h"
 #include <stdbool.h>
 #include <stddef.h>
 #include <stdint.h>

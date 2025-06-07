@@ -7,9 +7,9 @@ static void virtual_Peek( fifo_base_t * fifo );
 
 extern void FIFO_Init( fifo_base_t * fifo, uint32_t size )
 {
-    assert(fifo != NULL);
-    assert(size > 0U);
-    assert((size & (size - 1U )) == 0U);
+    ASSERT(fifo != NULL);
+    ASSERT(size > 0U);
+    ASSERT((size & (size - 1U )) == 0U);
     
     static const fifo_vfunc_t vfunc =
     {
@@ -29,25 +29,25 @@ extern void FIFO_Init( fifo_base_t * fifo, uint32_t size )
 static void virtual_EnQ( fifo_base_t * const fifo )
 {
     (void)fifo;
-    assert(false);
+    ASSERT(false);
 }
 
 static void virtual_DeQ( fifo_base_t * const fifo )
 {
     (void)fifo;
-    assert(false);
+    ASSERT(false);
 }
 
 static void virtual_Flush( fifo_base_t * const fifo )
 {
     (void)fifo;
-    assert(false);
+    ASSERT(false);
 }
 
 static void virtual_Peek( fifo_base_t * const fifo )
 {
     (void)fifo;
-    assert(false);
+    ASSERT(false);
 }
 
 extern bool FIFO_IsFull( fifo_base_t const * const fifo )

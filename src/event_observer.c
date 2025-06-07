@@ -2,8 +2,8 @@
 
 extern void EventObserver_Init(event_observer_t * const obs, uint32_t num_events)
 {
-    assert(obs != NULL);
-    assert(num_events > 0U );
+    ASSERT(obs != NULL);
+    ASSERT(num_events > 0U );
 
     for(uint32_t idx = 0U; idx < num_events; idx++)
     {
@@ -18,17 +18,17 @@ extern void EventObserver_Init(event_observer_t * const obs, uint32_t num_events
 
 extern void EventObserver_Subscribe(event_observer_t * const obs, event_t event, state_t * subscriber)
 {
-    assert( obs != NULL );
-    assert( subscriber != NULL );
+    ASSERT( obs != NULL );
+    ASSERT( subscriber != NULL );
 
     const uint32_t idx = (uint32_t)event;
     event_observer_t * const observer = &obs[idx];
     
-    assert( observer->subscriptions <= MAX_SUBSCRIPTIONS );
+    ASSERT( observer->subscriptions <= MAX_SUBSCRIPTIONS );
     /* Ensure it hasn't already been subscribed */
     for(uint32_t kdx = 0; kdx < observer->subscriptions; kdx++)
     {
-        assert( observer->subscriber[kdx] != subscriber );
+        ASSERT( observer->subscriber[kdx] != subscriber );
     }
 
     const uint32_t jdx = observer->subscriptions;
@@ -38,7 +38,7 @@ extern void EventObserver_Subscribe(event_observer_t * const obs, event_t event,
 
 extern const event_observer_t * const EventObserver_GetSubs(event_observer_t * const obs, event_t e)
 {
-    assert( obs != NULL );
+    ASSERT( obs != NULL );
     
     const uint32_t idx = (uint32_t)e;
     const event_observer_t * const observer = &obs[idx];

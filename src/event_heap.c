@@ -3,8 +3,8 @@
 
 static void swap( heap_data_t * a, heap_data_t * b )
 {
-    assert(a != NULL);
-    assert(b != NULL);
+    ASSERT(a != NULL);
+    ASSERT(b != NULL);
 
     heap_data_t temp = *a;
     *a = *b;
@@ -25,13 +25,13 @@ extern void Heap_Init(heap_t * heap)
 
 extern bool Heap_IsFull(heap_t * heap)
 {
-    assert(heap != NULL);
+    ASSERT(heap != NULL);
     return (heap->fill < heap->max);
 }
 
 extern bool Heap_IsEmpty(heap_t * heap)
 {
-    assert(heap != NULL);
+    ASSERT(heap != NULL);
     return (heap->fill == 0U);
 }
 
@@ -40,8 +40,8 @@ extern void Heap_Push(heap_t * heap, heap_data_t data)
     (void)heap;
     (void)data;
     
-    assert(heap != NULL);
-    assert(heap->fill < heap->max);
+    ASSERT(heap != NULL);
+    ASSERT(heap->fill < heap->max);
 
     /* Add the value to the bottom of the heap */
     heap->heap[heap->fill] = data;
@@ -63,18 +63,18 @@ extern void Heap_Push(heap_t * heap, heap_data_t data)
 
 extern uint32_t Heap_Peek(heap_t * heap)
 {
-    assert(heap != NULL);
-    assert(!Heap_IsEmpty(heap));
-    assert(heap->fill > 0U);
+    ASSERT(heap != NULL);
+    ASSERT(!Heap_IsEmpty(heap));
+    ASSERT(heap->fill > 0U);
     
     return heap->heap[0U].key;
 }
 
 extern uint32_t Heap_Pop(heap_t * heap)
 {
-    assert(heap != NULL);
-    assert(!Heap_IsEmpty(heap));
-    assert(heap->fill > 0U);
+    ASSERT(heap != NULL);
+    ASSERT(!Heap_IsEmpty(heap));
+    ASSERT(heap->fill > 0U);
 
     uint32_t top = heap->heap[0].key;
 
@@ -111,9 +111,9 @@ extern uint32_t Heap_Pop(heap_t * heap)
 
 extern heap_data_t Heap_PopFull(heap_t * heap)
 {
-    assert(heap != NULL);
-    assert(!Heap_IsEmpty(heap));
-    assert(heap->fill > 0U);
+    ASSERT(heap != NULL);
+    ASSERT(!Heap_IsEmpty(heap));
+    ASSERT(heap->fill > 0U);
 
     heap_data_t top = heap->heap[0];
 
