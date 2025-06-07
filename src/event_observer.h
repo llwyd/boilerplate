@@ -3,7 +3,6 @@
 
 #include "state.h"
 #include "assert_bp.h"
-#include <stdio.h>
 
 #define MAX_SUBSCRIPTIONS (4U)
 
