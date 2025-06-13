@@ -18,7 +18,8 @@ heap_data_t;
 
 typedef struct 
 {
-    heap_data_t heap[HEAP_LEN];
+    heap_data_t * heap[HEAP_LEN];
+    heap_data_t buffer[HEAP_LEN];
     uint32_t fill;
     uint32_t max;
 }
