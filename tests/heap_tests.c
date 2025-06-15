@@ -40,7 +40,7 @@ static void test_Heap_Push(void)
     
     TEST_ASSERT_EQUAL( 1U, heap.fill );
     TEST_ASSERT_EQUAL( HEAP_LEN, heap.max );
-    TEST_ASSERT_EQUAL( 10U, heap.heap[0].key );
+    TEST_ASSERT_EQUAL( 10U, heap.heap[0]->key );
 }
 
 static void test_Heap_Push2Gtr(void)
@@ -53,8 +53,8 @@ static void test_Heap_Push2Gtr(void)
     
     TEST_ASSERT_EQUAL( 2U, heap.fill );
     TEST_ASSERT_EQUAL( HEAP_LEN, heap.max );
-    TEST_ASSERT_EQUAL( 10U, heap.heap[0].key );
-    TEST_ASSERT_EQUAL( 11U, heap.heap[1].key );
+    TEST_ASSERT_EQUAL( 10U, heap.heap[0]->key );
+    TEST_ASSERT_EQUAL( 11U, heap.heap[1]->key );
 }
 
 static void test_Heap_Push2Less(void)
@@ -67,8 +67,8 @@ static void test_Heap_Push2Less(void)
     
     TEST_ASSERT_EQUAL( 2U, heap.fill );
     TEST_ASSERT_EQUAL( HEAP_LEN, heap.max );
-    TEST_ASSERT_EQUAL( 9U, heap.heap[0].key );
-    TEST_ASSERT_EQUAL( 10U, heap.heap[1].key );
+    TEST_ASSERT_EQUAL( 9U, heap.heap[0]->key );
+    TEST_ASSERT_EQUAL( 10U, heap.heap[1]->key );
 }
 
 static void test_Heap_Push3GL(void)
@@ -82,9 +82,9 @@ static void test_Heap_Push3GL(void)
     
     TEST_ASSERT_EQUAL( 3U, heap.fill );
     TEST_ASSERT_EQUAL( HEAP_LEN, heap.max );
-    TEST_ASSERT_EQUAL( 9U, heap.heap[0].key );
-    TEST_ASSERT_EQUAL( 11U, heap.heap[1].key );
-    TEST_ASSERT_EQUAL( 10U, heap.heap[2].key );
+    TEST_ASSERT_EQUAL( 9U, heap.heap[0]->key );
+    TEST_ASSERT_EQUAL( 11U, heap.heap[1]->key );
+    TEST_ASSERT_EQUAL( 10U, heap.heap[2]->key );
 }
 
 static void test_Heap_Push3GG(void)
@@ -98,9 +98,9 @@ static void test_Heap_Push3GG(void)
     
     TEST_ASSERT_EQUAL( 3U, heap.fill );
     TEST_ASSERT_EQUAL( HEAP_LEN, heap.max );
-    TEST_ASSERT_EQUAL( 10U, heap.heap[0].key );
-    TEST_ASSERT_EQUAL( 11U, heap.heap[1].key );
-    TEST_ASSERT_EQUAL( 11U, heap.heap[2].key );
+    TEST_ASSERT_EQUAL( 10U, heap.heap[0]->key );
+    TEST_ASSERT_EQUAL( 11U, heap.heap[1]->key );
+    TEST_ASSERT_EQUAL( 11U, heap.heap[2]->key );
 }
 
 static void test_Heap_Push3LG(void)
@@ -114,9 +114,9 @@ static void test_Heap_Push3LG(void)
     
     TEST_ASSERT_EQUAL( 3U, heap.fill );
     TEST_ASSERT_EQUAL( HEAP_LEN, heap.max );
-    TEST_ASSERT_EQUAL( 9U, heap.heap[0].key );
-    TEST_ASSERT_EQUAL( 10U, heap.heap[1].key );
-    TEST_ASSERT_EQUAL( 11U, heap.heap[2].key );
+    TEST_ASSERT_EQUAL( 9U, heap.heap[0]->key );
+    TEST_ASSERT_EQUAL( 10U, heap.heap[1]->key );
+    TEST_ASSERT_EQUAL( 11U, heap.heap[2]->key );
 }
 
 static void test_Heap_Push3LL(void)
@@ -130,9 +130,9 @@ static void test_Heap_Push3LL(void)
     
     TEST_ASSERT_EQUAL( 3U, heap.fill );
     TEST_ASSERT_EQUAL( HEAP_LEN, heap.max );
-    TEST_ASSERT_EQUAL( 8U, heap.heap[0].key );
-    TEST_ASSERT_EQUAL( 10U, heap.heap[1].key );
-    TEST_ASSERT_EQUAL( 9U, heap.heap[2].key );
+    TEST_ASSERT_EQUAL( 8U, heap.heap[0]->key );
+    TEST_ASSERT_EQUAL( 10U, heap.heap[1]->key );
+    TEST_ASSERT_EQUAL( 9U, heap.heap[2]->key );
 }
 
 static void test_Heap_Push4LLLL(void)
@@ -147,10 +147,10 @@ static void test_Heap_Push4LLLL(void)
     
     TEST_ASSERT_EQUAL( 4U, heap.fill );
     TEST_ASSERT_EQUAL( HEAP_LEN, heap.max );
-    TEST_ASSERT_EQUAL( 7U, heap.heap[0].key );
-    TEST_ASSERT_EQUAL( 8U, heap.heap[1].key );
-    TEST_ASSERT_EQUAL( 9U, heap.heap[2].key );
-    TEST_ASSERT_EQUAL( 10U, heap.heap[3].key );
+    TEST_ASSERT_EQUAL( 7U, heap.heap[0]->key );
+    TEST_ASSERT_EQUAL( 8U, heap.heap[1]->key );
+    TEST_ASSERT_EQUAL( 9U, heap.heap[2]->key );
+    TEST_ASSERT_EQUAL( 10U, heap.heap[3]->key );
 }
 
 static void test_Heap_Push4LLLG(void)
@@ -165,10 +165,10 @@ static void test_Heap_Push4LLLG(void)
     
     TEST_ASSERT_EQUAL( 4U, heap.fill );
     TEST_ASSERT_EQUAL( HEAP_LEN, heap.max );
-    TEST_ASSERT_EQUAL( 8U, heap.heap[0].key );
-    TEST_ASSERT_EQUAL( 9U, heap.heap[1].key );
-    TEST_ASSERT_EQUAL( 9U, heap.heap[2].key );
-    TEST_ASSERT_EQUAL( 10U, heap.heap[3].key );
+    TEST_ASSERT_EQUAL( 8U, heap.heap[0]->key );
+    TEST_ASSERT_EQUAL( 9U, heap.heap[1]->key );
+    TEST_ASSERT_EQUAL( 9U, heap.heap[2]->key );
+    TEST_ASSERT_EQUAL( 10U, heap.heap[3]->key );
 }
 
 static void test_Heap_Push4LLGL(void)
@@ -183,10 +183,10 @@ static void test_Heap_Push4LLGL(void)
     
     TEST_ASSERT_EQUAL( 4U, heap.fill );
     TEST_ASSERT_EQUAL( HEAP_LEN, heap.max );
-    TEST_ASSERT_EQUAL( 8U, heap.heap[0].key );
-    TEST_ASSERT_EQUAL( 9U, heap.heap[1].key );
-    TEST_ASSERT_EQUAL( 11U, heap.heap[2].key );
-    TEST_ASSERT_EQUAL( 10U, heap.heap[3].key );
+    TEST_ASSERT_EQUAL( 8U, heap.heap[0]->key );
+    TEST_ASSERT_EQUAL( 9U, heap.heap[1]->key );
+    TEST_ASSERT_EQUAL( 11U, heap.heap[2]->key );
+    TEST_ASSERT_EQUAL( 10U, heap.heap[3]->key );
 }
 
 static void test_Heap_Push4LLGG(void)
@@ -201,10 +201,10 @@ static void test_Heap_Push4LLGG(void)
     
     TEST_ASSERT_EQUAL( 4U, heap.fill );
     TEST_ASSERT_EQUAL( HEAP_LEN, heap.max );
-    TEST_ASSERT_EQUAL( 9U, heap.heap[0].key );
-    TEST_ASSERT_EQUAL( 10U, heap.heap[1].key );
-    TEST_ASSERT_EQUAL( 11U, heap.heap[2].key );
-    TEST_ASSERT_EQUAL( 12U, heap.heap[3].key );
+    TEST_ASSERT_EQUAL( 9U, heap.heap[0]->key );
+    TEST_ASSERT_EQUAL( 10U, heap.heap[1]->key );
+    TEST_ASSERT_EQUAL( 11U, heap.heap[2]->key );
+    TEST_ASSERT_EQUAL( 12U, heap.heap[3]->key );
 }
 
 static void test_Heap_Pop(void)
@@ -217,7 +217,7 @@ static void test_Heap_Pop(void)
     
     TEST_ASSERT_EQUAL( 1U, heap.fill );
     TEST_ASSERT_EQUAL( HEAP_LEN, heap.max );
-    TEST_ASSERT_EQUAL( 10U, heap.heap[0].key );
+    TEST_ASSERT_EQUAL( 10U, heap.heap[0]->key );
 
     uint32_t out = Heap_Pop(&heap);
     
@@ -236,13 +236,13 @@ static void test_Heap_Pop2G(void)
     
     TEST_ASSERT_EQUAL( 2U, heap.fill );
     TEST_ASSERT_EQUAL( HEAP_LEN, heap.max );
-    TEST_ASSERT_EQUAL( 10U, heap.heap[0].key );
-    TEST_ASSERT_EQUAL( 11U, heap.heap[1].key );
+    TEST_ASSERT_EQUAL( 10U, heap.heap[0]->key );
+    TEST_ASSERT_EQUAL( 11U, heap.heap[1]->key );
 
     uint32_t out = Heap_Pop(&heap);
     
     TEST_ASSERT_EQUAL( data[0], out );
-    TEST_ASSERT_EQUAL( data[1], heap.heap[0].key );
+    TEST_ASSERT_EQUAL( data[1], heap.heap[0]->key );
     TEST_ASSERT_EQUAL( 1U, heap.fill );
     TEST_ASSERT_EQUAL( HEAP_LEN, heap.max );
 }
@@ -257,8 +257,8 @@ static void test_Heap_Pop2L(void)
     
     TEST_ASSERT_EQUAL( 2U, heap.fill );
     TEST_ASSERT_EQUAL( HEAP_LEN, heap.max );
-    TEST_ASSERT_EQUAL( 9U, heap.heap[0].key );
-    TEST_ASSERT_EQUAL( 10U, heap.heap[1].key );
+    TEST_ASSERT_EQUAL( 9U, heap.heap[0]->key );
+    TEST_ASSERT_EQUAL( 10U, heap.heap[1]->key );
 
     uint32_t out = Heap_Pop(&heap);
     
@@ -278,9 +278,9 @@ static void test_Heap_Pop3LG(void)
     
     TEST_ASSERT_EQUAL( 3U, heap.fill );
     TEST_ASSERT_EQUAL( HEAP_LEN, heap.max );
-    TEST_ASSERT_EQUAL( 9U, heap.heap[0].key );
-    TEST_ASSERT_EQUAL( 10U, heap.heap[1].key );
-    TEST_ASSERT_EQUAL( 11U, heap.heap[2].key );
+    TEST_ASSERT_EQUAL( 9U, heap.heap[0]->key );
+    TEST_ASSERT_EQUAL( 10U, heap.heap[1]->key );
+    TEST_ASSERT_EQUAL( 11U, heap.heap[2]->key );
 
     uint32_t out = Heap_Pop(&heap);
     
@@ -300,15 +300,15 @@ static void test_Heap_Pop3GG(void)
     
     TEST_ASSERT_EQUAL( 3U, heap.fill );
     TEST_ASSERT_EQUAL( HEAP_LEN, heap.max );
-    TEST_ASSERT_EQUAL( 10U, heap.heap[0].key );
-    TEST_ASSERT_EQUAL( 11U, heap.heap[1].key );
-    TEST_ASSERT_EQUAL( 12U, heap.heap[2].key );
+    TEST_ASSERT_EQUAL( 10U, heap.heap[0]->key );
+    TEST_ASSERT_EQUAL( 11U, heap.heap[1]->key );
+    TEST_ASSERT_EQUAL( 12U, heap.heap[2]->key );
 
     uint32_t out = Heap_Pop(&heap);
     
     TEST_ASSERT_EQUAL( 10U, out );
     TEST_ASSERT_EQUAL( 11U, Heap_Peek(&heap) );
-    TEST_ASSERT_EQUAL( 12U, heap.heap[1].key );
+    TEST_ASSERT_EQUAL( 12U, heap.heap[1]->key );
     TEST_ASSERT_EQUAL( 2U, heap.fill );
     TEST_ASSERT_EQUAL( HEAP_LEN, heap.max );
 }
@@ -323,15 +323,15 @@ static void test_Heap_Pop3GL(void)
     
     TEST_ASSERT_EQUAL( 3U, heap.fill );
     TEST_ASSERT_EQUAL( HEAP_LEN, heap.max );
-    TEST_ASSERT_EQUAL( 9U, heap.heap[0].key );
-    TEST_ASSERT_EQUAL( 11U, heap.heap[1].key );
-    TEST_ASSERT_EQUAL( 10U, heap.heap[2].key );
+    TEST_ASSERT_EQUAL( 9U, heap.heap[0]->key );
+    TEST_ASSERT_EQUAL( 11U, heap.heap[1]->key );
+    TEST_ASSERT_EQUAL( 10U, heap.heap[2]->key );
 
     uint32_t out = Heap_Pop(&heap);
     
     TEST_ASSERT_EQUAL( 9U, out );
     TEST_ASSERT_EQUAL( 10U, Heap_Peek(&heap) );
-    TEST_ASSERT_EQUAL( 11U, heap.heap[1].key );
+    TEST_ASSERT_EQUAL( 11U, heap.heap[1]->key );
     TEST_ASSERT_EQUAL( 2U, heap.fill );
     TEST_ASSERT_EQUAL( HEAP_LEN, heap.max );
 }
@@ -347,25 +347,25 @@ static void test_Heap_Scenario0(void)
     
     TEST_ASSERT_EQUAL( 8U, heap.fill );
     TEST_ASSERT_EQUAL( HEAP_LEN, heap.max );
-    TEST_ASSERT_EQUAL(  4U, heap.heap[0].key );
-    TEST_ASSERT_EQUAL( 31U, heap.heap[1].key );
-    TEST_ASSERT_EQUAL( 12U, heap.heap[2].key );
-    TEST_ASSERT_EQUAL( 55U, heap.heap[3].key );
-    TEST_ASSERT_EQUAL( 81U, heap.heap[4].key );
-    TEST_ASSERT_EQUAL( 86U, heap.heap[5].key );
-    TEST_ASSERT_EQUAL( 57U, heap.heap[6].key );
-    TEST_ASSERT_EQUAL( 85U, heap.heap[7].key );
+    TEST_ASSERT_EQUAL(  4U, heap.heap[0]->key );
+    TEST_ASSERT_EQUAL( 31U, heap.heap[1]->key );
+    TEST_ASSERT_EQUAL( 12U, heap.heap[2]->key );
+    TEST_ASSERT_EQUAL( 55U, heap.heap[3]->key );
+    TEST_ASSERT_EQUAL( 81U, heap.heap[4]->key );
+    TEST_ASSERT_EQUAL( 86U, heap.heap[5]->key );
+    TEST_ASSERT_EQUAL( 57U, heap.heap[6]->key );
+    TEST_ASSERT_EQUAL( 85U, heap.heap[7]->key );
 
     uint32_t out = Heap_Pop(&heap);
     
     TEST_ASSERT_EQUAL( 4U, out );
-    TEST_ASSERT_EQUAL( 12U, heap.heap[0].key );
-    TEST_ASSERT_EQUAL( 31U, heap.heap[1].key );
-    TEST_ASSERT_EQUAL( 57U, heap.heap[2].key );
-    TEST_ASSERT_EQUAL( 55U, heap.heap[3].key );
-    TEST_ASSERT_EQUAL( 81U, heap.heap[4].key );
-    TEST_ASSERT_EQUAL( 86U, heap.heap[5].key );
-    TEST_ASSERT_EQUAL( 85U, heap.heap[6].key );
+    TEST_ASSERT_EQUAL( 12U, heap.heap[0]->key );
+    TEST_ASSERT_EQUAL( 31U, heap.heap[1]->key );
+    TEST_ASSERT_EQUAL( 57U, heap.heap[2]->key );
+    TEST_ASSERT_EQUAL( 55U, heap.heap[3]->key );
+    TEST_ASSERT_EQUAL( 81U, heap.heap[4]->key );
+    TEST_ASSERT_EQUAL( 86U, heap.heap[5]->key );
+    TEST_ASSERT_EQUAL( 85U, heap.heap[6]->key );
     
     TEST_ASSERT_EQUAL( 7U, heap.fill );
     TEST_ASSERT_EQUAL( HEAP_LEN, heap.max );
@@ -387,25 +387,25 @@ static void test_Heap_Scenario1(void)
     
     TEST_ASSERT_EQUAL( 8U, heap.fill );
     TEST_ASSERT_EQUAL( HEAP_LEN, heap.max );
-    TEST_ASSERT_EQUAL( 0U, heap.heap[0].key );
-    TEST_ASSERT_EQUAL( 2U, heap.heap[1].key );
-    TEST_ASSERT_EQUAL( 3U, heap.heap[2].key );
-    TEST_ASSERT_EQUAL( 3U, heap.heap[3].key );
-    TEST_ASSERT_EQUAL( 5U, heap.heap[4].key );
-    TEST_ASSERT_EQUAL( 5U, heap.heap[5].key );
-    TEST_ASSERT_EQUAL( 7U, heap.heap[6].key );
-    TEST_ASSERT_EQUAL( 5U, heap.heap[7].key );
+    TEST_ASSERT_EQUAL( 0U, heap.heap[0]->key );
+    TEST_ASSERT_EQUAL( 2U, heap.heap[1]->key );
+    TEST_ASSERT_EQUAL( 3U, heap.heap[2]->key );
+    TEST_ASSERT_EQUAL( 3U, heap.heap[3]->key );
+    TEST_ASSERT_EQUAL( 5U, heap.heap[4]->key );
+    TEST_ASSERT_EQUAL( 5U, heap.heap[5]->key );
+    TEST_ASSERT_EQUAL( 7U, heap.heap[6]->key );
+    TEST_ASSERT_EQUAL( 5U, heap.heap[7]->key );
 
     uint32_t out = Heap_Pop(&heap);
     
     TEST_ASSERT_EQUAL( 0U, out );
-    TEST_ASSERT_EQUAL( 2U, heap.heap[0].key );
-    TEST_ASSERT_EQUAL( 3U, heap.heap[1].key );
-    TEST_ASSERT_EQUAL( 3U, heap.heap[2].key );
-    TEST_ASSERT_EQUAL( 5U, heap.heap[3].key );
-    TEST_ASSERT_EQUAL( 5U, heap.heap[4].key );
-    TEST_ASSERT_EQUAL( 5U, heap.heap[5].key );
-    TEST_ASSERT_EQUAL( 7U, heap.heap[6].key );
+    TEST_ASSERT_EQUAL( 2U, heap.heap[0]->key );
+    TEST_ASSERT_EQUAL( 3U, heap.heap[1]->key );
+    TEST_ASSERT_EQUAL( 3U, heap.heap[2]->key );
+    TEST_ASSERT_EQUAL( 5U, heap.heap[3]->key );
+    TEST_ASSERT_EQUAL( 5U, heap.heap[4]->key );
+    TEST_ASSERT_EQUAL( 5U, heap.heap[5]->key );
+    TEST_ASSERT_EQUAL( 7U, heap.heap[6]->key );
     
     TEST_ASSERT_EQUAL( 7U, heap.fill );
     TEST_ASSERT_EQUAL( HEAP_LEN, heap.max );
