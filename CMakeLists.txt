@@ -38,6 +38,10 @@ add_executable( tests.out
                 tests/scenario_tests.h
                 tests/event_observer_tests.h
                 tests/event_observer_tests.c
+                tests/util_tests.h
+                tests/util_tests.c
+                tests/tests_bp.c
+                tests/tests_bp.h
                 Unity/src/unity.c
                 Unity/src/unity.h
                 Unity/src/unity_internals.h ) 
