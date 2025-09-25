@@ -19,13 +19,14 @@ pq_key_t;
 
 typedef struct
 {
-    pq_key_t * queue[PQ_DEFAULT_LEN];
+    pq_key_t * heap[PQ_FULL_LEN];
     uint32_t fill;
     uint32_t max;
 }
 pq_t;
 
 extern void PQ_Init(pq_t * const pq,
-        pq_key_t * pool);
+        pq_key_t * pool,
+        uint8_t bytes);
 
-#endif /* PQ_BASE_H
+#endif /* PQ_BASE_H */
