@@ -29,4 +29,10 @@ extern void PQ_Init(pq_t * const pq,
         pq_key_t * pool,
         uint8_t bytes);
 
+extern const pq_key_t * const PQ_Peek(pq_t * pq);
+extern pq_key_t * const PQ_Push(pq_t * pq, uint32_t key);
+extern pq_key_t * const PQ_Pop(pq_t * pq, uint32_t key);
+extern bool PQ_IsEmpty(pq_t * pq);
+extern bool PQ_IsFull(pq_t * pq);
+
 #endif /* PQ_BASE_H */
