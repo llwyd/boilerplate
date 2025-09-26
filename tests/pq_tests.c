@@ -126,10 +126,43 @@ static void test_PQ_Pop(void)
     TEST_ASSERT_EQUAL(ptr->key.key, 0x4345);
     TEST_ASSERT_EQUAL( 0U, pq.fill );
 }
+
+static void test_PQ_DecreaseKey(void)
+{
+    pq_t pq;
+    pq_test_t pool[PQ_FULL_LEN];
+    uint8_t bytes = sizeof(pq_test_t); 
+
+    PQ_Init(&pq, &pool->key, bytes);
+
+    pq_test_t * ptr = (pq_test_t*)PQ_Push(&pq, 0x1234);
+    ptr = (pq_test_t*)PQ_Push(&pq, 0x4345);
+    ptr->data = 0x4444;
+    ptr = (pq_test_t*)PQ_Push(&pq, 0x0666);
+    ptr->data = 0x5555;
+    ptr = (pq_test_t*)PQ_Push(&pq, 0x1066);
+    
+    TEST_ASSERT_EQUAL( 4U, pq.fill );
+
+    ptr = (pq_test_t*)PQ_Peek(&pq, 0u);
+    TEST_ASSERT_EQUAL(ptr->key.key, 0x0666);
+    TEST_ASSERT_EQUAL(ptr->data, 0x5555);
+    
+    ptr = (pq_test_t*)PQ_DecreaseKey(&pq, 3u, 0x0);
+
+    TEST_ASSERT_EQUAL(ptr->key.key, 0x0);
+    TEST_ASSERT_EQUAL(ptr->data, 0x4444);
+    
+    ptr = (pq_test_t*)PQ_Peek(&pq, 0u);
+    TEST_ASSERT_EQUAL(ptr->key.key, 0x0);
+    TEST_ASSERT_EQUAL(ptr->data, 0x4444);
+}
+
 extern void PQTestSuite(void)
 {
     RUN_TEST(test_PQ_Init);
     RUN_TEST(test_PQ_Push);
     RUN_TEST(test_PQ_Peek);
     RUN_TEST(test_PQ_Pop);
+    RUN_TEST(test_PQ_DecreaseKey);
 }

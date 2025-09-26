@@ -34,6 +34,7 @@ extern pq_key_t * const PQ_Push(pq_t * pq, uint32_t key)
 {
     ASSERT(pq != NULL);
     ASSERT(pq->fill < pq->max);
+    ASSERT(key > 0u);
 
     const uint32_t fill = pq->fill;
 
@@ -107,6 +108,28 @@ extern pq_key_t * const PQ_Pop(pq_t * pq)
         }
     }
 
+    return ret_ptr;
+}
+
+extern const pq_key_t * const PQ_DecreaseKey(pq_t * pq, uint32_t idx, uint32_t key)
+{
+    ASSERT(pq != NULL);
+    ASSERT(idx < pq->fill);
+
+    pq->heap[idx]->key = key;
+    pq_key_t * ret_ptr = pq->heap[idx];
+    
+    uint32_t jdx = idx;
+    /* Swim through the heap to ensure heap order is correct */
+    while( jdx > 0U )
+    {
+        uint32_t parent = (jdx - 1) >> 1U;
+        if( pq->heap[jdx]->key < pq->heap[parent]->key )
+        {
+            swap(&pq->heap[jdx], &pq->heap[parent]);
+        }
+        jdx = parent;
+    }
     return ret_ptr;
 }
 
