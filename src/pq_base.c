@@ -66,34 +66,38 @@ extern const pq_key_t * const PQ_Peek(pq_t * pq, uint32_t idx)
     return pq->heap[idx];
 }
 
-#if 0
-extern pq_key_t * const PQ_Pop(pq_t * pq, uint32_t key)
+extern pq_key_t * const PQ_Pop(pq_t * pq)
 {
-    ASSERT(heap != NULL);
-    ASSERT(!Heap_IsEmpty(heap));
-    ASSERT(heap->fill > 0U);
+    ASSERT(pq != NULL);
+    ASSERT(pq->fill > 0U);
 
-    uint32_t top = heap->heap[0]->key;
+
+    /* 'Extract' top by placing at the end of the queue
+     *  which is used as storage
+     */
+    
+    swap(&pq->heap[0], &pq->heap[PQ_STORAGE_IDX]);
+    pq_key_t * ret_ptr = pq->heap[PQ_STORAGE_IDX];
 
     /* Place bottom of heap at top */
-    swap(&heap->heap[0], &heap->heap[heap->fill - 1U]);
-    heap->heap[heap->fill - 1U]->key = UINT32_MAX;
-    heap->fill--;
+    swap(&pq->heap[0], &pq->heap[pq->fill - 1U]);
+    pq->heap[pq->fill - 1U]->key = UINT32_MAX;
+    pq->fill--;
 
     /* Sink through the heap */
     uint32_t idx = 0U;
     uint32_t jdx = (idx << 1U) + 1U;
 
-    while(jdx < heap->fill)
+    while(jdx < pq->fill)
     {
-        if(heap->heap[jdx]->key > heap->heap[jdx+1]->key)
+        if(pq->heap[jdx]->key > pq->heap[jdx+1]->key)
         {
             jdx++;
         }
 
-        if(heap->heap[idx]->key > heap->heap[jdx]->key)
+        if(pq->heap[idx]->key > pq->heap[jdx]->key)
         {
-            swap(&heap->heap[idx], &heap->heap[jdx]);
+            swap(&pq->heap[idx], &pq->heap[jdx]);
             idx = jdx;
             jdx = (idx << 1U) + 1U;
         }
@@ -103,9 +107,9 @@ extern pq_key_t * const PQ_Pop(pq_t * pq, uint32_t key)
         }
     }
 
-    return top;
+    return ret_ptr;
 }
-#endif
+
 extern bool PQ_IsFull(pq_t * pq)
 {
     ASSERT(pq != NULL);

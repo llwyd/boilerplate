@@ -9,6 +9,7 @@
 #define PQ_DEFAULT_LEN (16u)
 /* extra 1 is necessary for storage when popping as storage */
 #define PQ_FULL_LEN (PQ_DEFAULT_LEN + 1u)
+#define PQ_STORAGE_IDX (PQ_FULL_LEN - 1u)
 #endif
 
 typedef struct
@@ -31,7 +32,7 @@ extern void PQ_Init(pq_t * const pq,
 
 extern const pq_key_t * const PQ_Peek(pq_t * pq, uint32_t idx);
 extern pq_key_t * const PQ_Push(pq_t * pq, uint32_t key);
-extern pq_key_t * const PQ_Pop(pq_t * pq, uint32_t key);
+extern pq_key_t * const PQ_Pop(pq_t * pq);
 extern bool PQ_IsEmpty(pq_t * pq);
 extern bool PQ_IsFull(pq_t * pq);
 
