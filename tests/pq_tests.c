@@ -75,8 +75,28 @@ static void test_PQ_Push(void)
     TEST_ASSERT_EQUAL( 0x5555, ((pq_test_t *)pq.heap[1])->data );
 }
 
+static void test_PQ_Peek(void)
+{
+    pq_t pq;
+    pq_test_t pool[PQ_FULL_LEN];
+    uint8_t bytes = sizeof(pq_test_t); 
+
+    PQ_Init(&pq, &pool->key, bytes);
+
+    (void)PQ_Push(&pq, 0x1234);
+    (void)PQ_Push(&pq, 0x4345);
+    (void)PQ_Push(&pq, 0x0666);
+    (void)PQ_Push(&pq, 0x1066);
+    
+    TEST_ASSERT_EQUAL( 4U, pq.fill );
+    pq_test_t * ptr = (pq_test_t *)PQ_Peek(&pq, 0u);
+
+    TEST_ASSERT_EQUAL(ptr->key.key, 0x0666);
+    TEST_ASSERT_EQUAL( 4U, pq.fill );
+}
 extern void PQTestSuite(void)
 {
     RUN_TEST(test_PQ_Init);
     RUN_TEST(test_PQ_Push);
+    RUN_TEST(test_PQ_Peek);
 }

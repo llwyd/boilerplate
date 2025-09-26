@@ -57,14 +57,16 @@ extern pq_key_t * const PQ_Push(pq_t * pq, uint32_t key)
     return ret_ptr;
 }
 
-#if 0
-extern pq_key_t * const PQ_Peek(pq_t * pq, uint32_t key)
-    ASSERT(heap != NULL);
-    ASSERT(!Heap_IsEmpty(heap));
-    ASSERT(heap->fill > 0U);
+extern const pq_key_t * const PQ_Peek(pq_t * pq, uint32_t idx)
+{
+    ASSERT(pq != NULL);
+    ASSERT(idx < pq->fill);
+    ASSERT(pq->fill > 0U);
     
-    return heap->heap[0U]->key;
+    return pq->heap[idx];
 }
+
+#if 0
 extern pq_key_t * const PQ_Pop(pq_t * pq, uint32_t key)
 {
     ASSERT(heap != NULL);
