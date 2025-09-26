@@ -25,6 +25,10 @@ add_executable( tests.out
                 src/emitter_base.c
                 src/event_observer.c
                 src/event_observer.h
+                src/pq_base.c
+                src/pq_base.h
+                tests/pq_tests.c
+                tests/pq_tests.h
                 tests/fifo_tests.c
                 tests/fifo_tests.h
                 tests/state_tests.c

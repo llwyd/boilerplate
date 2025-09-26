@@ -3,6 +3,7 @@
 #include "heap_tests.h"
 #include "emitter_tests.h"
 #include "event_observer_tests.h"
+#include "pq_tests.h"
 #include "scenario_tests.h"
 #include "util_tests.h"
 #include "unity.h"
@@ -18,5 +19,6 @@ int main( void )
     EVENTOBSERVERTestSuite();
     SCENARIOTestSuite();
     UtilTestSuite();
+    PQTestSuite();
     return UNITY_END();
 }
