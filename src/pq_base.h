@@ -7,10 +7,11 @@
 
 #ifndef PQ_DEFAULT_LEN
 #define PQ_DEFAULT_LEN (16u)
+#endif
+
 /* extra 1 is necessary for storage when popping as storage */
 #define PQ_FULL_LEN (PQ_DEFAULT_LEN + 1u)
 #define PQ_STORAGE_IDX (PQ_FULL_LEN - 1u)
-#endif
 
 typedef struct
 {
