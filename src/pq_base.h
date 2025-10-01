@@ -35,7 +35,9 @@ extern const pq_key_t * const PQ_Peek(pq_t * pq, uint32_t idx);
 extern pq_key_t * const PQ_Push(pq_t * pq, uint32_t key);
 extern pq_key_t * const PQ_Pop(pq_t * pq);
 extern const pq_key_t * const PQ_DecreaseKey(pq_t * pq, uint32_t idx, uint32_t key);
+extern pq_key_t * const PQ_LastPopped(pq_t * pq);
 extern bool PQ_IsEmpty(pq_t * pq);
 extern bool PQ_IsFull(pq_t * pq);
+extern void PQ_Flush(pq_t * pq);
 
 #endif /* PQ_BASE_H */

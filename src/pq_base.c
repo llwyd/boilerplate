@@ -136,7 +136,7 @@ extern const pq_key_t * const PQ_DecreaseKey(pq_t * pq, uint32_t idx, uint32_t k
 extern bool PQ_IsFull(pq_t * pq)
 {
     ASSERT(pq != NULL);
-    return (pq->fill < pq->max);
+    return !(pq->fill < pq->max);
 }
 
 extern bool PQ_IsEmpty(pq_t * pq)
@@ -144,3 +144,19 @@ extern bool PQ_IsEmpty(pq_t * pq)
     ASSERT(pq != NULL);
     return (pq->fill == 0U);
 }
+
+extern void PQ_Flush(pq_t * pq)
+{
+    for(uint32_t idx = 0; idx < pq->fill; idx++)
+    {
+        pq->heap[idx]->key = UINT32_MAX;
+    }
+    pq->fill = 0;
+}
+
+extern pq_key_t * const PQ_LastPopped(pq_t * pq)
+{
+    ASSERT(pq != NULL);
+    return pq->heap[PQ_STORAGE_IDX];
+}
+

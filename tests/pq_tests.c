@@ -25,7 +25,7 @@ static void test_PQ_Init(void)
     TEST_ASSERT_TRUE( PQ_IsEmpty(&pq));
     TEST_ASSERT_EQUAL( 0U, pq.fill );
     TEST_ASSERT_EQUAL( PQ_DEFAULT_LEN, pq.max );
-
+    TEST_ASSERT_FALSE(PQ_IsFull(&pq));
     for(uint32_t idx = 0; idx < PQ_FULL_LEN; idx++)
     {
         TEST_ASSERT_EQUAL(&pool[idx].key, pq.heap[idx]);
@@ -73,6 +73,7 @@ static void test_PQ_Push(void)
     
     TEST_ASSERT_EQUAL( 0xaaaa, pq.heap[1]->key );
     TEST_ASSERT_EQUAL( 0x5555, ((pq_test_t *)pq.heap[1])->data );
+    TEST_ASSERT_FALSE(PQ_IsFull(&pq));
 }
 
 static void test_PQ_Peek(void)
@@ -88,6 +89,7 @@ static void test_PQ_Peek(void)
     (void)PQ_Push(&pq, 0x0666);
     (void)PQ_Push(&pq, 0x1066);
     
+    TEST_ASSERT_FALSE(PQ_IsFull(&pq));
     TEST_ASSERT_EQUAL( 4U, pq.fill );
     pq_test_t * ptr = (pq_test_t *)PQ_Peek(&pq, 0u);
 
@@ -108,6 +110,7 @@ static void test_PQ_Pop(void)
     (void)PQ_Push(&pq, 0x0666);
     (void)PQ_Push(&pq, 0x1066);
     
+    TEST_ASSERT_FALSE(PQ_IsFull(&pq));
     TEST_ASSERT_EQUAL( 4U, pq.fill );
     pq_test_t * ptr = (pq_test_t *)PQ_Pop(&pq);
 
@@ -142,6 +145,7 @@ static void test_PQ_DecreaseKey(void)
     ptr->data = 0x5555;
     ptr = (pq_test_t*)PQ_Push(&pq, 0x1066);
     
+    TEST_ASSERT_FALSE(PQ_IsFull(&pq));
     TEST_ASSERT_EQUAL( 4U, pq.fill );
 
     ptr = (pq_test_t*)PQ_Peek(&pq, 0u);
@@ -158,6 +162,50 @@ static void test_PQ_DecreaseKey(void)
     TEST_ASSERT_EQUAL(ptr->data, 0x4444);
 }
 
+static void test_PQ_IsFull(void)
+{
+    pq_t pq;
+    pq_test_t pool[PQ_FULL_LEN];
+    uint8_t bytes = sizeof(pq_test_t); 
+
+    PQ_Init(&pq, &pool->key, bytes);
+    pq_test_t * ptr = NULL;
+
+    TEST_ASSERT_TRUE(ptr == NULL);
+    for(uint32_t idx = 0; idx < PQ_DEFAULT_LEN; idx++)
+    {
+        TEST_ASSERT_FALSE(PQ_IsFull(&pq));
+        ptr = (pq_test_t *)PQ_Push(&pq, 0x1234);
+        TEST_ASSERT_TRUE(ptr != NULL);
+        TEST_ASSERT_FALSE(PQ_IsEmpty(&pq));
+    }
+    TEST_ASSERT_TRUE(PQ_IsFull(&pq));
+}
+
+static void test_PQ_Flush(void)
+{
+    pq_t pq;
+    pq_test_t pool[PQ_FULL_LEN];
+    uint8_t bytes = sizeof(pq_test_t); 
+
+    PQ_Init(&pq, &pool->key, bytes);
+    pq_test_t * ptr = NULL;
+
+    TEST_ASSERT_TRUE(ptr == NULL);
+    for(uint32_t idx = 0; idx < PQ_DEFAULT_LEN; idx++)
+    {
+        TEST_ASSERT_FALSE(PQ_IsFull(&pq));
+        ptr = (pq_test_t *)PQ_Push(&pq, 0x1234);
+        TEST_ASSERT_TRUE(ptr != NULL);
+        TEST_ASSERT_FALSE(PQ_IsEmpty(&pq));
+    }
+    TEST_ASSERT_TRUE(PQ_IsFull(&pq));
+    
+    PQ_Flush(&pq);
+    TEST_ASSERT_FALSE(PQ_IsFull(&pq));
+    TEST_ASSERT_TRUE(PQ_IsEmpty(&pq));
+}
+
 extern void PQTestSuite(void)
 {
     RUN_TEST(test_PQ_Init);
@@ -165,4 +213,6 @@ extern void PQTestSuite(void)
     RUN_TEST(test_PQ_Peek);
     RUN_TEST(test_PQ_Pop);
     RUN_TEST(test_PQ_DecreaseKey);
+    RUN_TEST(test_PQ_IsFull);
+    RUN_TEST(test_PQ_Flush);
 }
