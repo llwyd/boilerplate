@@ -30,7 +30,7 @@ extern void PQ_Init(pq_t * const pq,
     }
 }
 
-extern pq_key_t * const PQ_Push(pq_t * pq, uint32_t key)
+extern pq_key_t * PQ_Push(pq_t * pq, uint32_t key)
 {
     ASSERT(pq != NULL);
     ASSERT(pq->fill < pq->max);
@@ -58,7 +58,7 @@ extern pq_key_t * const PQ_Push(pq_t * pq, uint32_t key)
     return ret_ptr;
 }
 
-extern const pq_key_t * const PQ_Peek(pq_t * pq, uint32_t idx)
+extern pq_key_t * PQ_Peek(pq_t * pq, uint32_t idx)
 {
     ASSERT(pq != NULL);
     ASSERT(idx < pq->fill);
@@ -67,7 +67,7 @@ extern const pq_key_t * const PQ_Peek(pq_t * pq, uint32_t idx)
     return pq->heap[idx];
 }
 
-extern pq_key_t * const PQ_Pop(pq_t * pq)
+extern pq_key_t * PQ_Pop(pq_t * pq)
 {
     ASSERT(pq != NULL);
     ASSERT(pq->fill > 0U);
@@ -77,8 +77,8 @@ extern pq_key_t * const PQ_Pop(pq_t * pq)
      *  which is used as storage
      */
     
-    swap(&pq->heap[0], &pq->heap[PQ_STORAGE_IDX]);
-    pq_key_t * ret_ptr = pq->heap[PQ_STORAGE_IDX];
+    swap(&pq->heap[0], &pq->heap[PQ_CACHE_IDX]);
+    pq_key_t * ret_ptr = pq->heap[PQ_CACHE_IDX];
 
     /* Place bottom of heap at top */
     swap(&pq->heap[0], &pq->heap[pq->fill - 1U]);
@@ -111,7 +111,7 @@ extern pq_key_t * const PQ_Pop(pq_t * pq)
     return ret_ptr;
 }
 
-extern const pq_key_t * const PQ_DecreaseKey(pq_t * pq, uint32_t idx, uint32_t key)
+extern pq_key_t * PQ_DecreaseKey(pq_t * pq, uint32_t idx, uint32_t key)
 {
     ASSERT(pq != NULL);
     ASSERT(idx < pq->fill);
@@ -154,9 +154,9 @@ extern void PQ_Flush(pq_t * pq)
     pq->fill = 0;
 }
 
-extern pq_key_t * const PQ_LastPopped(pq_t * pq)
+extern pq_key_t * PQ_Cache(pq_t * pq)
 {
     ASSERT(pq != NULL);
-    return pq->heap[PQ_STORAGE_IDX];
+    return pq->heap[PQ_CACHE_IDX];
 }
 
