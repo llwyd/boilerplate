@@ -12,40 +12,25 @@ include_directories( tests.out PRIVATE Unity/src )
 include_directories( tests.out PRIVATE src )
 
 add_executable( tests.out
-                src/assert_bp.h
-                src/event_heap.h
                 src/event_heap.c
-                src/fifo_base.h
                 src/fifo_base.c
                 src/state.c
-                src/state.h
                 src/state_history.c
-                src/state_history.h
-                src/emitter_base.h
                 src/emitter_base.c
                 src/event_observer.c
-                src/event_observer.h
                 src/pq_base.c
-                src/pq_base.h
+                src/base64.c
+                tests/base64_tests.c
                 tests/pq_tests.c
-                tests/pq_tests.h
                 tests/fifo_tests.c
-                tests/fifo_tests.h
                 tests/state_tests.c
-                tests/state_tests.h
-                tests/heap_tests.h
                 tests/heap_tests.c
                 tests/tests.c
-                tests/emitter_tests.h
                 tests/emitter_tests.c
                 tests/scenario_tests.c
-                tests/scenario_tests.h
-                tests/event_observer_tests.h
                 tests/event_observer_tests.c
-                tests/util_tests.h
                 tests/util_tests.c
                 tests/tests_bp.c
-                tests/tests_bp.h
                 Unity/src/unity.c
                 Unity/src/unity.h
                 Unity/src/unity_internals.h ) 

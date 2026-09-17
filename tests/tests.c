@@ -1,4 +1,5 @@
 #include "state_tests.h"
+#include "base64_tests.h"
 #include "fifo_tests.h"
 #include "heap_tests.h"
 #include "emitter_tests.h"
@@ -20,5 +21,6 @@ int main( void )
     SCENARIOTestSuite();
     UtilTestSuite();
     PQTestSuite();
+    BASE64TestSuite();
     return UNITY_END();
 }
